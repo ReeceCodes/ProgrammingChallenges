@@ -8,4 +8,6 @@ Things I learned or realized:
 
 -how to debug a test (it failed but I didn't know why because the code wasn't actually showing me anything except the outputted results)
 
--given the scope of this function/task I wasn't able to fully understand everything about testing. I didn't get to use exceptions and I didn't get to refactor farther as I'm sure it's inefficient.
+-given the scope of this function/task I wasn't able to fully understand everything about testing. I didn't get to use exceptions* and I didn't get to refactor farther as I'm sure it's inefficient.
+
+*I was able to make a test for invalid inputs (not binary values)
