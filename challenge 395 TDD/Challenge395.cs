@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Challenge395
@@ -18,7 +18,11 @@ namespace Challenge395
                     return retValue.ToArray();
                 }
 
-                if (input.GetValue(i).ToString() == "1")
+                if (input.GetValue(i).ToString() != "0" && input.GetValue(i).ToString() != "1")  //add checks for invalid inputs. throw error if the value in the array isn't a 0 or 1
+                {
+                    throw new ArgumentException("Array contains invalid input");
+                }
+                else if (input.GetValue(i).ToString() == "1")
                 {
                     counter++;
                 }
