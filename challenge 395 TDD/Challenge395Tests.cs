@@ -19,40 +19,59 @@ namespace Challenge395Tests
             expected = Array.Empty<int>();
             actual = c395.nonogram(new int[] { });
 
-            TheTest(expected, actual);
+            nonogramTest(expected, actual);
 
             expected = Array.Empty<int>();
             actual = c395.nonogram(new int[] { 0, 0, 0, 0, 0 });
 
-            TheTest(expected, actual);
+            nonogramTest(expected, actual);
 
             expected = new int[] { 5 };
             actual = c395.nonogram(new int[] { 1, 1, 1, 1, 1 });
 
-            TheTest(expected, actual);
+            nonogramTest(expected, actual);
 
             expected = new int[] { 5, 4 };
             actual = c395.nonogram(new int[] { 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1 });
 
-            TheTest(expected, actual);
+            nonogramTest(expected, actual);
 
             expected = new int[] { 2, 1, 3 };
             actual = c395.nonogram(new int[] { 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0 });
 
-            TheTest(expected, actual);
+            nonogramTest(expected, actual);
 
             expected = new int[] { 2, 1, 3 };
             actual = c395.nonogram(new int[] { 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1 });
 
-            TheTest(expected, actual);
+            nonogramTest(expected, actual);
 
             expected = new int[] { 1, 1, 1, 1, 1, 1, 1, 1 };
             actual = c395.nonogram(new int[] { 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 });
 
-            TheTest(expected, actual);
+            nonogramTest(expected, actual);
 
             //could be further refactored to have two lists of array values that can be looped through of input/output instead of calling each by one
 
+        }
+
+        //test for intentionally bad input not containing binary values
+        [TestMethod]
+        public void nonogramTest_InvalidArrayException()
+        {
+            Challenge395Class c395 = new Challenge395Class();
+
+            try
+            {
+                var val = c395.nonogram(new int[] { 0, 2, 3 });
+            }
+            catch (ArgumentException e)
+            {
+                StringAssert.Contains(e.Message, "Array contains invalid input");
+                return;
+            }
+
+            Assert.Fail("Exception was not thrown!");
         }
 
         [Ignore]
@@ -72,7 +91,7 @@ namespace Challenge395Tests
             CollectionAssert.AreEqual(c395.nonogram(new int[] { 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 }), new int[] { 1, 1, 1, 1, 1, 1, 1, 1 });
         }
 
-        private void TheTest(Array expected, Array actual)
+        private void nonogramTest(Array expected, Array actual)
         {            
             if (expected.Length != actual.Length)
             {
@@ -81,8 +100,7 @@ namespace Challenge395Tests
             else
             {
                 CollectionAssert.AreEqual(expected, actual, "Same number of elements but not in the same order.");
-            }
-        
+            }        
         }
 
         //initial function from refactor
